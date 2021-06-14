@@ -50,7 +50,9 @@ const Router = () => (
       </Route>
 
       <Route exact path="/">
-        <Home />
+        <UserStateProtection reversed>
+          <Home />
+        </UserStateProtection>
       </Route>
 
       <Route path="/*">
