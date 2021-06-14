@@ -5,9 +5,11 @@ import { UserContext } from "../../context";
 function UserStateProtection({ children, reversed }) {
   const [user] = useContext(UserContext);
 
-  const shouldRedirect = reversed ? user : !user;
+  if (reversed && user) {
+    return <Redirect to="/dashboard" />;
+  }
 
-  if (shouldRedirect) {
+  if (!reversed && !user) {
     return <Redirect to="/" />;
   }
 
