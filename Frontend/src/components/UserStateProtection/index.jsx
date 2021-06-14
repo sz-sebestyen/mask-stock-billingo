@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../context";
 
-function UserStateProtection({ children }) {
+function UserStateProtection({ children, reversed }) {
   const [user] = useContext(UserContext);
 
-  if (!user) {
+  const shouldRedirect = reversed ? user : !user;
+
+  if (shouldRedirect) {
     return <Redirect to="/" />;
   }
 

@@ -14,11 +14,15 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/login">
-        <Login />
+        <UserStateProtection reversed>
+          <Login />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/registration">
-        <Registration />
+        <UserStateProtection reversed>
+          <Registration />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/dashboard">
