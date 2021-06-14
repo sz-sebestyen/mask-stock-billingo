@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import UserStateProtection from "../components/UserStateProtection";
 
 const Router = () => (
   <BrowserRouter>
@@ -21,19 +22,27 @@ const Router = () => (
       </Route>
 
       <Route exact path="/dashboard">
-        <Dashboard />
+        <UserStateProtection>
+          <Dashboard />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/hospital-registration">
-        <HospitalRegistration />
+        <UserStateProtection>
+          <HospitalRegistration />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/hospital/:id">
-        <Hospital />
+        <UserStateProtection>
+          <Hospital />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/mask-order/:id">
-        <MaskOrder />
+        <UserStateProtection>
+          <MaskOrder />
+        </UserStateProtection>
       </Route>
 
       <Route exact path="/">
