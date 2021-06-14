@@ -9,7 +9,6 @@ app.use(express.json());
 // Database
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
-const Users = require('./models/users');
 
 // MongoDb Atlas
 const connectionString = "mongodb...";
