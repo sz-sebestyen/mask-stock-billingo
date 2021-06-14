@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Database
@@ -12,7 +12,7 @@ mongoose.set('useFindAndModify', false);
 const Users = require('./models/users');
 
 // MongoDb Atlas
-const connectionString = "mongodb...";
+const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected...'))
