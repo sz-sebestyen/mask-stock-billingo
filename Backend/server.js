@@ -16,8 +16,8 @@ mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: 
     .catch(err => console.log(err));
 
 // Routes
-const billingoApiRoutes = require('./controllers/billingo');
-app.use('/api', billingoApiRoutes);
+const partnersRoutes = require('./controllers/partners');
+app.use('/api', partnersRoutes);
 
 app.listen(3001, () => {
     console.log('listening on 3001');
