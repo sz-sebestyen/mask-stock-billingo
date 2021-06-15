@@ -9,7 +9,7 @@ export default function Register() {
 
 	const register = () => {
 		axios({
-			method: "post",
+			method: "POST",
 			data: {
 				username: regUsername,
 				password: regPassword

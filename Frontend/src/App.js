@@ -5,7 +5,9 @@ import Logout from './components/Logout';
 import './App.css';
 
 //npm i axios
-// TODO: reg. és login látszik VAGY logout
+// TODO: reg. és login látszik
+// TODO: login után -> logout látszik
+// TODO: logoutra??
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

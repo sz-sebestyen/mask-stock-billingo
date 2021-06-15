@@ -7,7 +7,7 @@ export default function Login() {
 
 	const login = () => {
 		axios({
-			method: "post",
+			method: "POST",
 			data: {
 				username: loginUsername,
 				password: loginPassword
