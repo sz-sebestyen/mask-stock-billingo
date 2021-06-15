@@ -28,7 +28,7 @@ module.exports = function (passport) {
 		RegUser.findOne({ _id: id }, (err, user) => {
 			// cb(err, user);  	//password nem kell vissza
 			const userInfo = {
-				usernme: user.username
+				username: user.username
 			};
 			cb(err, userInfo);
 		});

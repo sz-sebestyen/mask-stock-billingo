@@ -10,7 +10,7 @@ import './App.css';
 // TODO: logoutra??
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  //
   // const [regUsername, setRegUsername] = useState("");
   // const [regPassword, setRegPassword] = useState("");
   // const [loginUsername, setLoginUsername] = useState("");
@@ -18,14 +18,14 @@ function App() {
 
   return (
     <div className="App">
-      {loggedIn ?
-        <Logout />
+      {/* {loggedIn ? */}
+      {/* <Logout />
         :
-        <>
-          <Register />
-          <Login />
-        </>
-      }
+        <> */}
+      {/* <Register /> */}
+      <Login />
+      {/* </>
+      } */}
 
     </div>
   );

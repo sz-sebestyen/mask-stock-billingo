@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Register from "./Register";
 import Logout from "./Logout";
 import "./RegLogin.css";
 
@@ -27,16 +28,19 @@ export default function Login() {
 	return (
 		<>
 			{loggedIn ? <Logout /> :
-				<div>
-					<b>Sign in: </b>
+				<>
+					<div>
+						<b>Sign in: </b>
 					Username: <input type="text" id="loginId" placeholder="username"
-						onChange={e => setLoginUsername(e.target.value)}
-					/>
+							onChange={e => setLoginUsername(e.target.value)}
+						/>
 					Password: <input type="password" id="loginPw" placeholder="password"
-						onChange={e => setLoginPassword(e.target.value)}
-					/>
-					<button onClick={login}>Login</button>
-				</div>
+							onChange={e => setLoginPassword(e.target.value)}
+						/>
+						<button onClick={login}>Login</button>
+					</div>
+					<Register />
+				</>
 			}
 
 		</>
