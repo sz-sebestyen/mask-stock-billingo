@@ -1,26 +1,5 @@
 const mongoose = require('mongoose');
 
-const hospitalSchema = new mongoose.Schema({
-    name:                   { type: String, required: true },
-    address:                { type: addressSchema, required: true },
-    emails:                 { type: String, required: true, unique: true },
-    taxcode:                { type: String, required: true },
-    iban:                   { type: String, required: true },
-    swift:                  { type: String, required: true },
-    account_number:         { type: String, required: true },
-    phone:                  { type: String, required: true },
-    general_ledger_number:  { type: String, required: true },
-    tax_type:               { type: String, required: true },
-    custom_billing_settings:{ type: billingSchema, required: true },
-
-    // users: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-    // ],
-});
-
 const addressSchema = new mongoose.Schema({
     name:           { type: String, required: true },
     country_code:   { type: String, required: true },
@@ -28,6 +7,11 @@ const addressSchema = new mongoose.Schema({
     city:           { type: String, required: true },
     address:        { type: String, required: true },
 
+});
+
+const discountSchema = new mongoose.Schema({
+    type:   { type: String, required: true },
+    value:  { type: Number, required: true },
 });
 
 const billingSchema = new mongoose.Schema({
@@ -44,9 +28,25 @@ const billingSchema = new mongoose.Schema({
     discount:               { type: discountSchema, required: true },
 });
 
-const discountSchema = new mongoose.Schema({
-    type:   { type: String, required: true },
-    value:  { type: Number, required: true },
+const hospitalSchema = new mongoose.Schema({
+    name:                   { type: String, required: true },
+    address:                { type: addressSchema, required: true },
+    emails:                 { type: Array, required: true, unique: true },
+    taxcode:                { type: String, required: true },
+    iban:                   { type: String, required: true },
+    swift:                  { type: String, required: true },
+    account_number:         { type: String, required: true },
+    phone:                  { type: String, required: true },
+    general_ledger_number:  { type: String, required: true },
+    tax_type:               { type: String, required: true },
+    custom_billing_settings:{ type: billingSchema, required: true },
+
+    // users: [
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     }
+    // ],
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);

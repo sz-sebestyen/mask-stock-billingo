@@ -8,6 +8,8 @@ app.use(express.json());
 
 // Database
 const connectionString = "mongodb+srv://cluster0.wzkbd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected...'))
@@ -15,7 +17,7 @@ mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: 
 
 // Routes
 const billingoApiRoutes = require('./controllers/billingo');
-app.use('/billingoApi', billingoApiRoutes);
+app.use('/api', billingoApiRoutes);
 
 app.listen(3001, () => {
     console.log('listening on 3001');
