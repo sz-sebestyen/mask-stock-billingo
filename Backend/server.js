@@ -74,16 +74,17 @@ app.get("/user", (req, res) => {
 });
 
 // Database
+const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
-
-// MongoDb Atlas
-const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
 
 mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
+// Routes
+const partnersRoutes = require('./controllers/partners');
+app.use('/api', partnersRoutes);
 
 app.listen(3001, () => {
     console.log('listening on 3001');
