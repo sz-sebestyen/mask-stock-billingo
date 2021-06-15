@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./RegLogin.css";
 
 export default function Logout() {
 	const [data, setData] = useState(null);

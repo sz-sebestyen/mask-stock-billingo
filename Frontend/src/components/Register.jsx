@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 // import RegModal from "./RegModal";
 import axios from "axios";
+import "./RegLogin.css";
 
 export default function Register() {
 	const [showReg, setShowReg] = useState(false);
@@ -26,14 +27,15 @@ export default function Register() {
 			</div>
 
 			{showReg &&
-				<div>
-					Username: <input type="text" id="" placeholder="username"
+				<div id="regDiv">
+					<h2>Sign Up</h2>
+					Username: <input type="text" id="regId" placeholder="username"
 						onChange={e => setRegUsername(e.target.value)}
 					/>
-					Password: <input type="password" id="" placeholder="password"
+					Password: <input type="password" id="regPw" placeholder="password"
 						onChange={e => setRegPassword(e.target.value)}
 					/>
-					<button onClick={register}>Sign Up</button>
+					<button onClick={register}>Register</button>
 					<button onClick={() => setShowReg(false)}>Cancel</button>
 				</div>}
 		</>
