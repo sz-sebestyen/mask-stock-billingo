@@ -27,7 +27,7 @@ mongoose
 //const User = require("./models/user");
 //const Hospital = require("./models/hospital");
 //const Product = require("./models/product");
-// const TestUser = require("./models/testUser");
+const TestUser = require("./models/testUser");
 
 const TestHospital = require("./models/testHospital");
 
@@ -73,13 +73,47 @@ app.post("/hospitals/update/:searchName.:key.:value" , async (req, res) => {
   res.json(response)
 })
 
+// ----USER----
+
+
 // User felvétele az adatbázisba
+// post http://localhost:3001/users/addNewUser
+app.post("/users/addNewUser", async (req, res) => {
+  
+  const doc = new TestUser({
+    name: req.body.name,
+    email: req.body.email,
+    country: req.body.country,
+    sex: req.body.sex,
+  });
+  
+  const response = await doc.save();
+  res.json(response);
+});
 
 // Userek teljes listájának lekérdezése
+// post http://localhost:3001/users/addNewUser
+app.get("/users/allOf" , async (req, res) => {
+  const response = await TestUser.find();
+  res.json(response)
+  })
 
 // user keresése, adatainak lekérdezése
+// http://localhost:3001/users/searchByName/Ödön
+
+app.get("/users/searchByName/:search" , async (req, res) => {
+  const response = await TestUser.findOne({name: new RegExp(req.params.search)});
+  res.json(response)
+  })
 
 // user adatainak módosítása
+
+app.post("/users/update/:searchName.:key.:value" , async (req, res) => {
+  const response = await TestUser.updateOne({name: [req.params.searchName] }, {$set: {[req.params.key] : req.params.value} })
+
+  res.json(response)
+})
+
 
 // saját adatbázis, benne a maszkok száma
 
