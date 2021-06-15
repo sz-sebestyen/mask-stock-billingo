@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
+import Register from './components/Register';
+import Login from './components/Login';
+import Logout from './components/Logout';
 import './App.css';
 
+//npm i axios
+// TODO: reg. és login látszik VAGY logout
+
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  // const [regUsername, setRegUsername] = useState("");
+  // const [regPassword, setRegPassword] = useState("");
+  // const [loginUsername, setLoginUsername] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loggedIn ?
+        <Logout />
+        :
+        <>
+          <Register />
+          <Login />
+        </>
+      }
+
     </div>
   );
 }
