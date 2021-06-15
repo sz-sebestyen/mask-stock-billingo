@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Database
-const connectionString = "mongodb+srv://cluster0.wzkbd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
