@@ -20,7 +20,7 @@ export default function Login() {
 
 	return (
 		<div>
-			<span>Sign in: </span>
+			<b>Sign in: </b>
 			Username: <input type="text" id="loginId" placeholder="username"
 				onChange={e => setLoginUsername(e.target.value)}
 			/>
