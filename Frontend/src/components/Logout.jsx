@@ -5,6 +5,7 @@ import "./RegLogin.css";
 export default function Logout() {
 	const [data, setData] = useState(null);
 
+	//TODO: innen ezt inkább ki... (prop)
 	const getUser = () => {
 		axios({
 			method: "GET",

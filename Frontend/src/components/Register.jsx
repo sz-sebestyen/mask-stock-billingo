@@ -17,7 +17,9 @@ export default function Register() {
 			},
 			withCredentials: true,
 			url: "http://localhost:3001/register"
-		}).then((res) => console.log(res));
+		})
+			.then((res) => console.log(res))
+			.finally(() => setShowReg(false));
 	};
 
 	return (
