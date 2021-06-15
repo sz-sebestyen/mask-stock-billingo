@@ -64,7 +64,14 @@ app.get("/hospitals/searchByName/:search" , async (req, res) => {
   res.json(response)
   })
 
-// kórház adatainak módosítása
+// -----kórház adatainak módosítása
+// http://localhost:3001//hospitals/update/search.key.value 
+// post : http://localhost:3001//hospitals/update/LechterMed.country.Italy
+app.post("/hospitals/update/:searchName.:key.:value" , async (req, res) => {
+  const response = await TestHospital.updateOne({name: [req.params.searchName] }, {$set: {[req.params.key] : req.params.value} })
+
+  res.json(response)
+})
 
 // User felvétele az adatbázisba
 
