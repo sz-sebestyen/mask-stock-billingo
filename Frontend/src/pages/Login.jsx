@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context";
 import { useHistory, useLocation } from "react-router-dom";
+import Email from "../components/Input/Email";
+import Password from "../components/Input/Password";
 
 function Login() {
   let history = useHistory();
@@ -17,6 +19,8 @@ function Login() {
   return (
     <div>
       Login
+      <Email />
+      <Password />
       <button onClick={login}>login</button>
     </div>
   );
