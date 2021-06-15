@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const testHospital = require("./models/testHospital");
 
 const app = express();
 
@@ -26,8 +27,11 @@ mongoose
 //const User = require("./models/user");
 //const Hospital = require("./models/hospital");
 //const Product = require("./models/product");
-const TestUser = require("./models/testUser");
+// const TestUser = require("./models/testUser");
 
+const TestHospital = require("./models/testHospital");
+
+console.log(testHospital);
 //----- Routingot majd később kiszervezem
 
 app.get("/ping", (req, res) => {
@@ -35,14 +39,30 @@ app.get("/ping", (req, res) => {
 });
 
 // kórház felvétele az adatbázisba
-app.post("/hospitals/addNewHospital", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
+app.post("/hospitals/addNewHospital", async (req, res) => {
+
+  const doc = new TestHospital({
+    name: req.body.name,
+    email: req.body.email,
+    country: req.body.country,
+    city: req.body.city,
+  });
+
+  const response = await doc.save();
+  res.json(response);
 });
 
 // Kórházak teljes listájának lekérdezése
+  app.get("/hospitals/allOf" , async (req, res) => {
+    const response = await TestHospital.find();
+    res.json(response)
+    })
 
 // kórház  keresése, adatainak lekérdezése
+app.get("/hospitals/searchByName/:search" , async (req, res) => {
+  const response = await TestHospital.findOne({name: new RegExp(req.params.search)});
+  res.json(response)
+  })
 
 // kórház adatainak módosítása
 
