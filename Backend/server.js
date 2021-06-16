@@ -46,10 +46,13 @@ mongoose
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-// self-datas
 
+
+
+// self-datas
 const MyDatas = require("./models/myDatas");
 
+// set datas to default
 app.get("/setDefault", async (req, res) => {
   const date = new Date;
 
@@ -68,19 +71,17 @@ const response = await myDatasDefault.save();
   res.send(response);
 });
 
- async function maskNumberChange (changeNumber) {
-  console.log(" In maskNumberChange")
- const response =  await MyDatas.updateOne({"selfID": "selfData"}, {$inc: {'number_of_masks' :changeNumber}}); 
-  return(response)
-};
 
 /* app.get("/setMask/:maskNumber" ,  async (req, res) => {
   const resp = await maskNumberChange(req.params.maskNumber);
   res.json(resp)
 }) */
 
-
-
+async function maskNumberChange (changeNumber) {
+ console.log(" In maskNumberChange")
+const response =  await MyDatas.updateOne({"selfID": "selfData"}, {$inc: {'number_of_masks' :changeNumber}}); 
+ return(response)
+};
 
 async function ifMonthChange() {
   let date = new Date;
@@ -88,7 +89,6 @@ async function ifMonthChange() {
   const response =  await MyDatas.updateOne({"selfID": "selfData"}, {$set: {'current_month' : currentMonth}}); 
    console.log(response) 
 }
-//
 
 async function checkDate() {
    let date = new Date; 
@@ -102,18 +102,11 @@ async function checkDate() {
 
 checkDate();
 
-
-
-
-
-
-
 const hospitalRoutes = require("./routes/hospitalRoute")
 app.use("/hospitals" , hospitalRoutes)
 
 const userRoutes = require("./routes/userRoute")
 app.use("/users" , userRoutes)
-
 
 const TestUser = require("./models/testUser");
 const TestHospital = require("./models/testHospital");
