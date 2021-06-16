@@ -89,8 +89,11 @@ app.use('/api', partnersRoutes);
 const productsRoutes = require('./controllers/products');
 app.use('/api', productsRoutes);
 
-const bankaccountsRoutes = require('./controllers/bankaccounts');
+const bankaccountsRoutes = require('./controllers/bankAccounts');
 app.use('/api', bankaccountsRoutes);
+
+const docBlocksRoute = require('./controllers/documentBlocks');
+app.use('/api', docBlocksRoute);
 
 app.listen(3001, () => {
     console.log('listening on 3001');
