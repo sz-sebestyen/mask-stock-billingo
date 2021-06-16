@@ -26,7 +26,7 @@ function Login() {
       url: "/login",
     }).then((res) => {
       console.log(res);
-      setUser(true);
+      setUser(res.data.user);
       history.replace(from);
     });
     // .finally(() => setLoggedIn(true));

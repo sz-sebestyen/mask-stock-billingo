@@ -1,0 +1,9 @@
+#regDiv {
+	position: fixed;
+	width: 300px;
+	top: 10px;
+	left: calc(50% - 150px);
+	background-color: white;
+	border: 1px solid black;
+	padding-bottom: 20px;
+}
