@@ -12,7 +12,7 @@ export default function MaskStock() {
 
 	return masks && (
 		<div>
-			current stock: {new Intl.NumberFormat("hu-HU").format(masks)} pieces
+			(current stock: {new Intl.NumberFormat("hu-HU").format(masks)} pieces)
 		</div>
 	);
 }
