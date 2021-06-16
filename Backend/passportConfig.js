@@ -1,11 +1,11 @@
-const RegUser = require("./models/regUser");
+const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const localStrategy = require("passport-local").Strategy;
 
 module.exports = function (passport) {
   passport.use(
     new localStrategy((username, password, done) => {
-      RegUser.findOne({ username: username }, (err, user) => {
+      User.findOne({ username: username }, (err, user) => {
         if (err) throw err;
         if (!user) return done(null, false);
         bcrypt.compare(password, user.password, (err, res) => {
@@ -23,7 +23,7 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser((id, cb) => {
-    RegUser.findOne({ _id: id }, (err, user) => {
+    User.findOne({ _id: id }, (err, user) => {
       // cb(err, user);  	//password nem kell vissza
       const userInfo = {
         username: user.username,
