@@ -6,7 +6,7 @@ function HospitalCard({ hospital }) {
 
   return (
     <li>
-      HospitalCard
+      {hospital.name}
       <button onClick={() => history.push(`/hospital/${hospital.id}`)}>
         {"Order >>"}
       </button>

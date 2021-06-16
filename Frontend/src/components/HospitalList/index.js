@@ -5,15 +5,12 @@ import HospitalCard from "../HospitalCard";
 function HospitalList() {
   const [user, setUser] = useState();
 
-  const getUser = () => {
-		axios({
+  const getUser = async () => {
+		const response = await axios({
 			method: "GET",
 			url: "/api/user"
-		}).then((res) => {
-			console.log(res);
-			console.log(res.data);
-			setUser(res.data);
-		});
+		})
+		setUser(response.data);
 	};
 
   useEffect(() => {
@@ -22,9 +19,11 @@ function HospitalList() {
 
   return (
     <ul>
-      <HospitalCard hospital={{ id: 0 }} />
-      <HospitalCard hospital={{ id: 1 }} />
-      <HospitalCard hospital={{ id: 2 }} />
+      {
+        user?.hospitals.map(hospital => {
+          return <HospitalCard hospital={ hospital } />
+        })
+      }
     </ul>
   );
 }
