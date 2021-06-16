@@ -9,6 +9,7 @@ function UserContextProvider({ children }) {
       const res = await fetch("/user");
       const json = await res.json();
       setUser(json.user);
+      console.log(json.user);
     } catch (error) {
       console.error(error);
     }
