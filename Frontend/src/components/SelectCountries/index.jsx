@@ -1,10 +1,10 @@
 import React from "react";
 
-function SelectCountries() {
+function SelectCountries(props) {
   return (
     <>
       <label htmlFor="country">Country</label>
-      <select id="country">
+      <select id="country" {...props} defaultValue="HU">
         <option value="AF">Afghanistan </option>
 
         <option value="AL">Albania </option>
