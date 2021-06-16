@@ -100,6 +100,11 @@ app.get("/setDefault", async (req, res) => {
   res.send(response);
 });
 
+app.get("/maskNumber" , async (req, res) => {
+const ask = await MyDatas.find({selfID: "selfData"})
+res.json(ask[0].number_of_masks)
+});
+
 /* app.get("/setMask/:maskNumber" ,  async (req, res) => {
   const resp = await maskNumberChange(req.params.maskNumber);
   res.json(resp)
