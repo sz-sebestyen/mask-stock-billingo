@@ -10,9 +10,11 @@ const bodyParser = require("body-parser");
 const app = express();
 const RegUser = require("./models/regUser");
 // const user = require('./models/user');
+require("dotenv/config");		            //.env-hez
 
 // npm i express body-parser cors mongoose passport passport-local cookie-parser bcryptjs express-session
 // npm i nodemon
+// npm i dotenv 							//.env-hez
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -74,7 +76,8 @@ app.get("/user", (req, res) => {
 });
 
 // Database
-const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
+const connectionString = process.env.DB_CONNECTION;
+// const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
