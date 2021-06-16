@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router({mergeParams: true});
 const Partners = require('../models/hospital');
-// const Users = require('../models/user');
+const Users = require('../models/user');
 
 // const apiKey = process.env.API_KEY;
 const apiKey = '2fe9f974-cd27-11eb-a32a-06ac9760f844';
@@ -34,9 +34,18 @@ router.get('/partners/:id', async (req, res) => {
 });
 
 router.post('/partners', async (req, res) => {
+    console.log('request body:', req.body)
     const response = await fetch(`${billingoApi}/partners`, { method: 'POST', headers: options.headers, body: JSON.stringify(req.body)});
     const jsonResponse = await response.json();
-    Partners.create(jsonResponse);
+    console.log(jsonResponse)
+
+    // TODO: get userId from req.body?
+    const foundUser = await Users.findById(req.params.id);
+
+    const partner = await Partners.create(jsonResponse);
+    partner.save();
+    foundUser.hospitals.push(partner);
+
     res.send(jsonResponse);
 });
 
