@@ -22,13 +22,13 @@ app.use(
 // npm i express body-parser cors mongoose passport passport-local cookie-parser bcryptjs express-session
 // npm i nodemon
 
-
 // Passport
 app.use(
   session({
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
 );
 
