@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const testHospital = require("./models/testHospital");
 const cors = require("cors");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
@@ -141,15 +140,6 @@ async function checkDate() {
 
 checkDate();
 
-const hospitalRoutes = require("./routes/hospitalRoute");
-app.use("/hospitals", hospitalRoutes);
-
-const userRoutes = require("./routes/userRoute");
-app.use("/users", userRoutes);
-
-const TestUser = require("./models/testUser");
-const TestHospital = require("./models/testHospital");
-
 // Routes
 const partnersRoutes = require("./controllers/partners");
 const authRoutes = require("./controllers/auth");
@@ -160,12 +150,17 @@ app.use(authRoutes);
 const productsRoutes = require("./controllers/products");
 app.use("/api", productsRoutes);
 
+const userRoutes = require("./controllers/users");
+app.use("/api", userRoutes);
+
 const bankaccountsRoutes = require("./controllers/bankAccounts");
 app.use("/api", bankaccountsRoutes);
 
 const docBlocksRoute = require("./controllers/documentBlocks");
 app.use("/api", docBlocksRoute);
 
+
+// Server
 app.listen(3001, () => {
     console.log("listening on 3001");
 });

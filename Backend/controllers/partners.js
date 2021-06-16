@@ -34,17 +34,18 @@ router.get('/partners/:id', async (req, res) => {
 });
 
 router.post('/partners', async (req, res) => {
-    console.log('request body:', req.body)
+    console.log(req.body)
     const response = await fetch(`${billingoApi}/partners`, { method: 'POST', headers: options.headers, body: JSON.stringify(req.body) });
     const jsonResponse = await response.json();
-    console.log(jsonResponse)
+    console.log('response json: ', jsonResponse)
 
     // TODO: get userId from req.body?
-    const foundUser = await Users.findById(req.params.id);
+    const foundUser = await Users.findOne({username: req.user.username});
 
     const partner = await Partners.create(jsonResponse);
     partner.save();
     foundUser.hospitals.push(partner);
+    foundUser.save();
 
     res.send(jsonResponse);
 });

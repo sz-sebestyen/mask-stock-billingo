@@ -5,7 +5,7 @@ const passport = require("passport");
 const router = express.Router({ mergeParams: true });
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
     if (!user) res.send("User does not exist.");
@@ -15,14 +15,14 @@ router.post("/login", (req, res, next) => {
         res.json({
           /* message: "Successfully authenticated.", */ user: req.user,
         });
-        console.log(req.user);
+        console.log('auth user', req.user);
       });
     }
   })(req, res, next);
 });
 
 router.post("/register", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("User already exists.");

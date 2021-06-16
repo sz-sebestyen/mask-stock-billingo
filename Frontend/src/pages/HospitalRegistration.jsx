@@ -27,6 +27,7 @@ function HospitalRegistration() {
       data: {
         name,
         address,
+        emails: [email],
         taxcode: tax.tax_code,
         tax_type: tax.tax_type,
       },
