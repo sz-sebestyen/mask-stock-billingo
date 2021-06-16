@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import HospitalDataCard from "../components/HospitalDataCard";
 import MaskOrderForm from "../components/MaskOrderForm";
+import BackButton from "../components/BackButton";
 
 function Hospital() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ function Hospital() {
       Hospital {id}
       <HospitalDataCard />
       <MaskOrderForm />
+      <BackButton>Back</BackButton>
     </div>
   );
 }

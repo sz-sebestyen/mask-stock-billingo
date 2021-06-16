@@ -3,6 +3,7 @@ import FormSection from "../components/FormSection";
 import Input from "../components/Input/Input";
 import Email from "../components/Input/Email";
 import SelectCountries from "../components/SelectCountries";
+import BackButton from "../components/BackButton";
 
 function HospitalRegistration() {
   const [name, setName] = useState("");
@@ -89,6 +90,7 @@ function HospitalRegistration() {
       </FormSection>
       <div>
         <button onClick={addHospital}>Add hospital</button>
+        <BackButton>Cancel</BackButton>
       </div>
     </div>
   );
