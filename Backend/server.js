@@ -6,16 +6,8 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
-// const passportLocal = require("passport-local").Strategy;
-const bcrypt = require("bcryptjs");
 const app = express();
-// const RegUser = require("./models/regUser");
-// const user = require('./models/user');
 require("dotenv/config"); //.env-hez
-
-// npm i express body-parser cors mongoose passport passport-local cookie-parser bcryptjs express-session
-// npm i nodemon
-// npm i dotenv 							//.env-hez
 
 /* app.use(express.urlencoded({ extended: true })); */
 app.use(express.json());
@@ -40,54 +32,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);
 
-app.post("/login", (req, res, next) => {
-  console.log(req.body);
-  passport.authenticate("local", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send("User does not exist.");
-    else {
-      req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send("Successfully authenticated.");
-        console.log(req.user);
-      });
-    }
-  })(req, res, next);
-});
-
-app.post("/register", (req, res) => {
-  console.log(req.body);
-  RegUser.findOne({ username: req.body.username }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) res.send("User already exists.");
-    if (!doc) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const newRegUser = new RegUser({
-        username: req.body.username,
-        password: hashedPassword,
-      });
-      await newRegUser.save();
-      res.send("User created.");
-      console.log("User created.");
-    }
-  });
-});
-
-app.get("/user", (req, res) => {
-  res.send(req.user);
-});
-
 app.use(
   cors({
     origin: "http://localhost:3000", // react app port
     credentials: true,
   })
 );
-
-// const passportLocal = require("passport-local").Strategy;
-
-// npm i express body-parser cors mongoose passport passport-local cookie-parser bcryptjs express-session
-// npm i nodemon
 
 // Passport
 app.use(
@@ -110,8 +60,6 @@ mongoose.set("useFindAndModify", false);
 
 // MongoDb Atlas
 const connectionString = process.env.DB_CONNECTION;
-//  const connectionString =
-//   "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
 
 mongoose
   .connect(connectionString, {
@@ -126,29 +74,12 @@ mongoose
 //const Hospital = require("./models/hospital");
 //const Product = require("./models/product");
 
-// Rendelés POST
-// - saját bankszámla
-// - kórház azonosíta
-// - Kórház többi adataánek bekérése a databnase-ről
-// - van-e annyi maszk, mint amennyit kér
-
-// függvény => user ID-t kap, visszaadja a kórházakat, amik hozzá tartoznak.
-// user bejelentkezik GET
-// Visszakapja az a saját adatait és a kórházat
-
-// saját adatbázis, számlázási adatainkkal, és maszkok számával
-// minden hónap elején 10.000 maszkot hozzáadni
-
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
 // self-datas
 const MyDatas = require("./models/myDatas");
-
-// const connectionString = "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority";
-// mongoose.set('useCreateIndex', true);
-// mongoose.set('useFindAndModify', false);
 
 // set datas to default
 app.get("/setDefault", async (req, res) => {
@@ -213,24 +144,6 @@ app.use("/users", userRoutes);
 
 const TestUser = require("./models/testUser");
 const TestHospital = require("./models/testHospital");
-
-// ----USER----
-
-// saját adatbázis,
-// --benne a maszkok száma
-// maszkok számának módosítása
-/* const connectionString =
-  "mongodb+srv://admin:admin@cluster0.wzkbd.mongodb.net/MaskStock?retryWrites=true&w=majority"; */
-/* mongoose.set("useCreateIndex", true);
-mongoose.set("useFindAndModify", false);
-
-mongoose
-  .connect(connectionString, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err)); */
 
 // Routes
 const partnersRoutes = require("./controllers/partners");
