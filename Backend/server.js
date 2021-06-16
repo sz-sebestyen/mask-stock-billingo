@@ -20,8 +20,6 @@ app.use(
 
 // const passportLocal = require("passport-local").Strategy;
 
-// npm i express body-parser cors mongoose passport passport-local cookie-parser bcryptjs express-session
-// npm i nodemon
 
 // Passport
 app.use(
@@ -55,8 +53,8 @@ mongoose
   .catch((err) => console.log(err));
 
 // Modells import
-//const User = require("./models/user");
-//const Hospital = require("./models/hospital");
+const User = require("./models/user");
+const Hospital = require("./models/hospital");
 //const Product = require("./models/product");
 
 
@@ -65,6 +63,9 @@ mongoose
 // - kórház azonosíta
 // - Kórház többi adataánek bekérése a databnase-ről
 // - van-e annyi maszk, mint amennyit kér
+
+
+
 
 
 // függvény => user ID-t kap, visszaadja a kórházakat, amik hozzá tartoznak. 
