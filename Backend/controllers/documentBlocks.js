@@ -1,7 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router({ mergeParams: true });
-const DocumentBlock = require('../models/documentblock');
 
 // const apiKey = process.env.API_KEY;
 const apiKey = '2fe9f974-cd27-11eb-a32a-06ac9760f844';
