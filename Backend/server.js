@@ -86,6 +86,9 @@ mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: 
 const partnersRoutes = require('./controllers/partners');
 app.use('/api', partnersRoutes);
 
+const productsRoutes = require('./controllers/products');
+app.use('/api', productsRoutes);
+
 app.listen(3001, () => {
     console.log('listening on 3001');
 });
