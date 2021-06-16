@@ -20,6 +20,7 @@ function HospitalList() {
   return (
     <ul>
       {
+        !user ? 'Loading...' :
         user?.hospitals.map(hospital => {
           return <HospitalCard hospital={ hospital } />
         })

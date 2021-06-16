@@ -15,12 +15,6 @@ const options = {
 
 const billingoApi = 'https://api.billingo.hu/v3';
 
-// router.get('/api/userDTO', (req, res) => {
-//     const users = Users.find({});
-//     users.map(el => el.hospitals)
-// })
-// user + hospital
-
 router.get('/partners', async (req, res) => {
     const response = await fetch(`${billingoApi}/partners`, { method: 'GET', headers: options.headers});
     const jsonResponse = await response.json();
@@ -34,16 +28,14 @@ router.get('/partners/:id', async (req, res) => {
 });
 
 router.post('/partners', async (req, res) => {
-    console.log(req.body)
     const response = await fetch(`${billingoApi}/partners`, { method: 'POST', headers: options.headers, body: JSON.stringify(req.body) });
     const jsonResponse = await response.json();
-    console.log('response json: ', jsonResponse)
 
-    // TODO: get userId from req.body?
     const foundUser = await Users.findOne({username: req.user.username});
 
     const partner = await Partners.create(jsonResponse);
     partner.save();
+
     foundUser.hospitals.push(partner);
     foundUser.save();
 
