@@ -3,6 +3,7 @@ import FormSection from "../components/FormSection";
 import Input from "../components/Input/Input";
 import Email from "../components/Input/Email";
 import SelectCountries from "../components/SelectCountries";
+import axios from "axios";
 import BackButton from "../components/BackButton";
 
 function HospitalRegistration() {
@@ -20,7 +21,18 @@ function HospitalRegistration() {
   const [email, setEmail] = useState("");
 
   const addHospital = async () => {
-    console.log(name, address, tax, email);
+    axios({
+      url: "/api/partners",
+      method: "POST",
+      data: {
+        name,
+        address,
+        taxcode: tax.tax_code,
+        tax_type: tax.tax_type,
+      },
+    }).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
