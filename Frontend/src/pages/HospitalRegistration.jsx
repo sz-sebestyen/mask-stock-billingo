@@ -50,10 +50,10 @@ function HospitalRegistration() {
     }).then((res) => {
       console.log(res.data);
       // TODO: save new hospital to user context
-      // setUsercontext((user) => ({
-      //   ...user,
-      //   hospitals: [...user.hospitals, res.data],
-      // }));
+      setUsercontext((user) => ({
+        ...user,
+        hospitals: [...user.hospitals, res.data],
+      }));
     });
   };
 
