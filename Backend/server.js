@@ -109,6 +109,7 @@ res.json(ask[0].number_of_masks)
   res.json(resp)
 }) */
 
+
 async function maskNumberChange(changeNumber) {
   console.log(" In maskNumberChange");
   const response = await MyDatas.updateOne(
@@ -140,15 +141,38 @@ async function checkDate() {
 
 checkDate();  // ezt rakjuk be a bejelentkezéshez, akkor minden log -in nél leeeleenőrzi a készletet. 
 
- async function datacollection (hosptialID, numberOfOrder) {
-  const ask = await MyDatas.find({selfID: "selfData"});
-  console.log(ask[0].number_of_masks)
+// adatkérés rendeléskor
+ async function dataCollector (hosptialID, numberOfOrder) {
+  
+  const ask = await MyDatas.find({selfID: "selfData"})
+  
+  if (ask[0].number_of_masks >= numberOfOrder) {
 
+    maskNumberChange( 0-numberOfOrder);
+
+    const taxType =  await Hospital.findOne({"id" : hosptialID});
+
+    const datas = {
+      taxType : taxType.tax_type,
+      selfID : ask[0].selfID,
+      hospitalID : hosptialID,
+      numberOfOrder: numberOfOrder 
+    }
+
+    return datas;
+
+
+
+  } else {
+    return "not enough Mask";
+   
+  }
 };
 
+dataCollector(1736071317, 1000);
 
 
-
+/* 
 
 const hospitalRoutes = require("./routes/hospitalRoute");
 app.use("/hospitals", hospitalRoutes);
@@ -157,7 +181,7 @@ const userRoutes = require("./routes/userRoute");
 app.use("/users", userRoutes);
 
 const TestUser = require("./models/testUser");
-const TestHospital = require("./models/testHospital");
+const TestHospital = require("./models/testHospital"); */
 
 // Routes
 const partnersRoutes = require("./controllers/partners");
