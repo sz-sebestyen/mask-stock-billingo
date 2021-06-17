@@ -21,6 +21,14 @@ function HospitalRegistration() {
     tax_code: "",
   });
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const [ledgerNo, setLedgerNo] = useState("");
+
+  // const [accNo, setAccNo] = useState("");
+  // const [iban, setIban] = useState("");
+  // const [swift, setSwift] = useState("");
+
 
   const addHospital = async () => {
     axios({
@@ -28,8 +36,13 @@ function HospitalRegistration() {
       method: "POST",
       data: {
         name,
+        ledgerNo,
         address,
         emails: [email],
+        phone,
+        // accNo,
+        // iban,
+        // swift,
         taxcode: tax.tax_code,
         tax_type: tax.tax_type,
       },
@@ -44,9 +57,14 @@ function HospitalRegistration() {
       HospitalRegistration
       <FormSection label="Hospital">
         <Input
-          label="Name"
+          label="Name *"
           value={name}
           onChange={({ target: { value } }) => setName(value)}
+        />
+        <Input
+          label="Customer ledger number"
+          value={ledgerNo}
+          onChange={({ target: { value } }) => setLedgerNo(value)}
         />
       </FormSection>
       <FormSection label="Address">
@@ -57,21 +75,21 @@ function HospitalRegistration() {
           }
         />
         <Input
-          label="Post code"
+          label="Postal code *"
           value={address.post_code}
           onChange={({ target: { value } }) =>
             setAddress((prev) => ({ ...prev, post_code: value }))
           }
         />
         <Input
-          label="City"
+          label="City *"
           value={address.city}
           onChange={({ target: { value } }) =>
             setAddress((prev) => ({ ...prev, city: value }))
           }
         />
         <Input
-          label="Address"
+          label="Address *"
           value={address.address}
           onChange={({ target: { value } }) =>
             setAddress((prev) => ({ ...prev, address: value }))
@@ -103,7 +121,29 @@ function HospitalRegistration() {
           value={email}
           onChange={({ target: { value } }) => setEmail(value)}
         />
+        <Input
+          label="Phone"
+          value={phone}
+          onChange={({ target: { value } }) => setPhone(value)}
+        />
       </FormSection>
+      {/* <FormSection label="Bank account">
+        <Input
+          label="Customer ledger number"
+          value={accNo}
+          onChange={({ target: { value } }) => setAccNo(value)}
+        />
+        <Input
+          label="Bank account number"
+          value={iban}
+          onChange={({ target: { value } }) => setIban(value)}
+        />
+        <Input
+          label="IBAN account number"
+          value={swift}
+          onChange={({ target: { value } }) => setSwift(value)}
+        />
+      </FormSection> */}
       <div>
         <Button onClick={addHospital}>Add hospital</Button>
         <BackButton>Cancel</BackButton>

@@ -1,5 +1,5 @@
 import React from "react";
-import HospitalList from "../components/HospitalList";
+import HospitalList from "../components/HospitalList/index";
 import { useHistory } from "react-router-dom";
 import Menu from "../components/Menu";
 import Button from "../components/Button";
