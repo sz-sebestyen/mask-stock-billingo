@@ -6,7 +6,7 @@ function HospitalList() {
   const [user] = useContext(UserContext);
 
   return (
-    <ul>
+    <ul className="m-3 flex flex-col gap-3">
       {user?.hospitals.map((hospital) => {
         return <HospitalCard hospital={hospital} />;
       })}

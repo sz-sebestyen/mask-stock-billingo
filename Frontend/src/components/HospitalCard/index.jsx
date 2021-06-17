@@ -7,8 +7,8 @@ function HospitalCard({ hospital }) {
   const history = useHistory();
 
   return (
-    <li>
-      {hospital.name}
+    <li className="flex justify-between items-center border p-2">
+      <span>{hospital.name}</span>
       <Button onClick={() => history.push(`/hospital/${hospital.id}`)}>
         {"Order >>"}
       </Button>

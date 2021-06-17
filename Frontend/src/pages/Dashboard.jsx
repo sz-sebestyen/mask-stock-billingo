@@ -10,10 +10,13 @@ function Dashboard() {
   return (
     <div>
       <Menu />
-      Dashboard
-      <Button onClick={() => history.push("/hospital-registration")}>
-        Add hospital
-      </Button>
+      <h2 className="m-3 text-xl">Dashboard</h2>
+
+      <div className="m-3">
+        <Button onClick={() => history.push("/hospital-registration")}>
+          Add hospital
+        </Button>
+      </div>
       <HospitalList />
     </div>
   );
