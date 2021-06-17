@@ -10,15 +10,18 @@ import { UserContext } from "../context";
 function Hospital() {
   const { id } = useParams();
   const [user] = useContext(UserContext);
+  const hospital = user?.hospitals?.find((hospital) => "" + hospital.id === id);
 
   return (
     <div className="flex flex-col gap-2 items-center mt-20">
       <Menu />
       <h2 className="m-3 text-xl">Order masks for your hospital</h2>
       <HospitalDataCard
-        hospital={user?.hospitals?.find((hospital) => "" + hospital.id === id)}
+        hospital={hospital}
       />
-      <MaskOrderForm />
+      <MaskOrderForm
+        hospital={hospital}
+      />
       <MaskStock />
       <BackButton>Back</BackButton>
     </div>

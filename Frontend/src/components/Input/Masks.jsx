@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import Input from "./Input";
 
 function Masks(props) {
+
+  // const orderQtRef = useRef(null);
+
   return (
     <Input
       type="number"
@@ -12,6 +15,8 @@ function Masks(props) {
       step="10"
       defaultValue={50}
       className="w-full"
+      // ref={orderQtRef}
+      id="orderQt"
     />
   );
 }

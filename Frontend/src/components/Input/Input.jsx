@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({ label, className, ...rest }) {
+function Input({ label, className, id, ...rest }) {
   return (
     <div>
       <div>
@@ -12,7 +12,7 @@ function Input({ label, className, ...rest }) {
         <input
           className={"p-1 rounded border-black border " + className}
           required
-          id={label}
+          id={id ? id : label}
           placeholder={label}
           {...rest}
           onBlur={(event) => {
