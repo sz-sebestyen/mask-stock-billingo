@@ -3,7 +3,7 @@ import React from "react";
 function SelectCountries(props) {
   return (
     <>
-      <label htmlFor="country">Country</label>
+      <label htmlFor="country">Country *</label>
       <select id="country" {...props} defaultValue="HU">
         <option value="AF">Afghanistan </option>
 
