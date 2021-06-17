@@ -8,7 +8,7 @@ function HospitalList() {
   return (
     <ul className="m-3 flex flex-col gap-3">
       {user?.hospitals.map((hospital) => {
-        return <HospitalCard hospital={hospital} />;
+        return <HospitalCard key={hospital.id} hospital={hospital} />;
       })}
     </ul>
   );
