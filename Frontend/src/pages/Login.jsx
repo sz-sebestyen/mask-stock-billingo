@@ -5,6 +5,7 @@ import Email from "../components/Input/Email";
 import Password from "../components/Input/Password";
 import axios from "axios";
 import Button from "../components/Button";
+import BackButton from "../components/BackButton";
 
 function Login() {
   let history = useHistory();
@@ -34,11 +35,15 @@ function Login() {
   };
 
   return (
-    <div>
-      Login
+    <div className="flex flex-col gap-4 items-center mt-20">
+      <h2 className="text-2xl">Login</h2>
       <Email onChange={({ target: { value } }) => setLoginUsername(value)} />
       <Password onChange={({ target: { value } }) => setLoginPassword(value)} />
-      <Button onClick={login}>login</Button>
+
+      <div className="flex gap-4">
+        <Button onClick={login}>Sign In</Button>
+        <BackButton>Back</BackButton>
+      </div>
     </div>
   );
 }

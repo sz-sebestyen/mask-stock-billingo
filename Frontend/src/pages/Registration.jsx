@@ -5,6 +5,7 @@ import Password from "../components/Input/Password";
 import PasswordRepeat from "../components/Input/PasswordRepeat";
 import axios from "axios";
 import Button from "../components/Button";
+import BackButton from "../components/BackButton";
 
 function Registration() {
   const [hasRegistered, setHasRegistered] = useState(false);
@@ -36,14 +37,17 @@ function Registration() {
   }
 
   return (
-    <div>
-      Registration
+    <div className="flex flex-col gap-4 items-center mt-20">
+      <h2 className="text-2xl">Registration</h2>
       <Email onChange={({ target: { value } }) => setRegUsername(value)} />
       <Password onChange={({ target: { value } }) => setRegPassword(value)} />
       <PasswordRepeat
         onChange={({ target: { value } }) => setRegPasswordRep(value)}
       />
-      <Button onClick={register}>Register</Button>
+      <div className="flex gap-4">
+        <Button onClick={register}>Register</Button>
+        <BackButton>Back</BackButton>
+      </div>
     </div>
   );
 }
