@@ -13,9 +13,11 @@ function Registration() {
   const [regUsername, setRegUsername] = useState("");
   const [regPassword, setRegPassword] = useState("");
   const [regPasswordRep, setRegPasswordRep] = useState("");
+  const [isWaiting, setIsWaiting] = useState(false);
 
   const register = () => {
     if (regPassword !== regPasswordRep) return;
+    setIsWaiting(true);
 
     axios({
       method: "POST",
@@ -25,11 +27,12 @@ function Registration() {
       },
       withCredentials: true,
       url: "/register",
-    }).then((res) => {
-      console.log(res);
-      setHasRegistered(true);
-    });
-    // .finally(() => setShowReg(false));
+    })
+      .then((res) => {
+        console.log(res);
+        setHasRegistered(true);
+      })
+      .finally(() => setIsWaiting(false));
   };
 
   if (hasRegistered) {
@@ -44,10 +47,12 @@ function Registration() {
       <PasswordRepeat
         onChange={({ target: { value } }) => setRegPasswordRep(value)}
       />
-      <div className="flex gap-4">
-        <Button onClick={register}>Register</Button>
-        <BackButton>Back</BackButton>
-      </div>
+      {!isWaiting && (
+        <div className="flex gap-4">
+          <Button onClick={register}>Register</Button>
+          <BackButton>Back</BackButton>
+        </div>
+      )}
     </div>
   );
 }

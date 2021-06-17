@@ -16,8 +16,10 @@ function Login() {
 
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isWaiting, setIsWaiting] = useState(false);
 
   const login = () => {
+    setIsWaiting(true);
     axios({
       method: "POST",
       data: {
@@ -26,12 +28,13 @@ function Login() {
       },
       withCredentials: true,
       url: "/login",
-    }).then((res) => {
-      console.log(res);
-      setUser(res.data.user);
-      history.replace(from);
-    });
-    // .finally(() => setLoggedIn(true));
+    })
+      .then((res) => {
+        console.log(res);
+        setUser(res.data.user);
+        history.replace(from);
+      })
+      .finally(() => setIsWaiting(false));
   };
 
   return (
@@ -40,10 +43,12 @@ function Login() {
       <Email onChange={({ target: { value } }) => setLoginUsername(value)} />
       <Password onChange={({ target: { value } }) => setLoginPassword(value)} />
 
-      <div className="flex gap-4">
-        <Button onClick={login}>Sign In</Button>
-        <BackButton>Back</BackButton>
-      </div>
+      {!isWaiting && (
+        <div className="flex gap-4">
+          <Button onClick={login}>Sign In</Button>
+          <BackButton>Back</BackButton>
+        </div>
+      )}
     </div>
   );
 }
