@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormSection from "../components/FormSection";
 import Input from "../components/Input/Input";
 import Email from "../components/Input/Email";
@@ -7,8 +7,10 @@ import axios from "axios";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import Menu from "../components/Menu";
+import { UserContext } from "../context";
 
 function HospitalRegistration() {
+  const [, setUsercontext] = useContext(UserContext);
   const [name, setName] = useState("");
   const [address, setAddress] = useState({
     country_code: "HU",
@@ -46,7 +48,12 @@ function HospitalRegistration() {
         tax_type: tax.tax_type,
       },
     }).then((res) => {
-      console.log(res);
+      console.log(res.data);
+      // TODO: save new hospital to user context
+      // setUsercontext((user) => ({
+      //   ...user,
+      //   hospitals: [...user.hospitals, res.data],
+      // }));
     });
   };
 
