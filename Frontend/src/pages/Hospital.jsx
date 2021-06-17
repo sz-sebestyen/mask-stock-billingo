@@ -14,6 +14,7 @@ function Hospital() {
   return (
     <div className="flex flex-col gap-2 items-center mt-20">
       <Menu />
+      <h2 className="m-3 text-xl">Order masks for your hospital</h2>
       <HospitalDataCard
         hospital={user?.hospitals?.find((hospital) => "" + hospital.id === id)}
       />
