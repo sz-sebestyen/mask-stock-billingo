@@ -4,7 +4,7 @@ function SelectCountries(props) {
   return (
     <>
       <label htmlFor="country">Country *</label>
-      <select id="country" {...props} defaultValue="HU">
+      <select className="w-44" id="country" {...props} defaultValue="HU">
         <option value="AF">Afghanistan </option>
 
         <option value="AL">Albania </option>

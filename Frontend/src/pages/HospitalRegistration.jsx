@@ -29,7 +29,6 @@ function HospitalRegistration() {
   // const [iban, setIban] = useState("");
   // const [swift, setSwift] = useState("");
 
-
   const addHospital = async () => {
     axios({
       url: "/api/partners",
@@ -52,9 +51,9 @@ function HospitalRegistration() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 items-center pb-12">
       <Menu />
-      HospitalRegistration
+      <h2 className="text-2xl mt-12">Hospital Registration</h2>
       <FormSection label="Hospital">
         <Input
           label="Name *"
@@ -144,7 +143,7 @@ function HospitalRegistration() {
           onChange={({ target: { value } }) => setSwift(value)}
         />
       </FormSection> */}
-      <div>
+      <div className="flex gap-4">
         <Button onClick={addHospital}>Add hospital</Button>
         <BackButton>Cancel</BackButton>
       </div>
