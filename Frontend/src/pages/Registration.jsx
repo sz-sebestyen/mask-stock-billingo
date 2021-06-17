@@ -4,6 +4,7 @@ import Email from "../components/Input/Email";
 import Password from "../components/Input/Password";
 import PasswordRepeat from "../components/Input/PasswordRepeat";
 import axios from "axios";
+import Button from "../components/Button";
 
 function Registration() {
   const [hasRegistered, setHasRegistered] = useState(false);
@@ -42,7 +43,7 @@ function Registration() {
       <PasswordRepeat
         onChange={({ target: { value } }) => setRegPasswordRep(value)}
       />
-      <button onClick={register}>Register</button>
+      <Button onClick={register}>Register</Button>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Email from "../components/Input/Email";
 import SelectCountries from "../components/SelectCountries";
 import axios from "axios";
 import BackButton from "../components/BackButton";
+import Button from "../components/Button";
 
 function HospitalRegistration() {
   const [name, setName] = useState("");
@@ -102,7 +103,7 @@ function HospitalRegistration() {
         />
       </FormSection>
       <div>
-        <button onClick={addHospital}>Add hospital</button>
+        <Button onClick={addHospital}>Add hospital</Button>
         <BackButton>Cancel</BackButton>
       </div>
     </div>

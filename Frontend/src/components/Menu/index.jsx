@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../context";
+import Button from "../Button";
 
 function Menu() {
   const [user, setUser] = useContext(UserContext);
@@ -8,7 +9,7 @@ function Menu() {
     <div>
       menu
       <div>Signed in as: {user.username}</div>
-      <button
+      <Button
         onClick={() =>
           fetch("/user/logout")
             .then((res) => res.json())
@@ -17,7 +18,7 @@ function Menu() {
         }
       >
         Logout
-      </button>
+      </Button>
     </div>
   );
 }

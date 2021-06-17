@@ -1,15 +1,17 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import Button from "../Button";
+
 function HospitalCard({ hospital }) {
   const history = useHistory();
 
   return (
     <li>
       {hospital.name}
-      <button onClick={() => history.push(`/hospital/${hospital.id}`)}>
+      <Button onClick={() => history.push(`/hospital/${hospital.id}`)}>
         {"Order >>"}
-      </button>
+      </Button>
     </li>
   );
 }

@@ -3,7 +3,6 @@ import Registration from "./Registration";
 import Dashboard from "./Dashboard";
 import HospitalRegistration from "./HospitalRegistration";
 import Hospital from "./Hospital";
-import MaskOrder from "./MaskOrder";
 import NotFound from "./NotFound";
 import Home from "./Home";
 
@@ -40,12 +39,6 @@ const Router = () => (
       <Route exact path="/hospital/:id">
         <UserStateProtection>
           <Hospital />
-        </UserStateProtection>
-      </Route>
-
-      <Route exact path="/mask-order/:id">
-        <UserStateProtection>
-          <MaskOrder />
         </UserStateProtection>
       </Route>
 
