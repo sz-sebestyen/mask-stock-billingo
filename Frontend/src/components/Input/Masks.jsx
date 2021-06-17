@@ -5,12 +5,13 @@ function Masks(props) {
   return (
     <Input
       type="number"
-      label="Masks"
+      label="Number of masks:"
       {...props}
       min="50"
       max="1000"
       step="10"
       defaultValue={50}
+      className="w-full"
     />
   );
 }

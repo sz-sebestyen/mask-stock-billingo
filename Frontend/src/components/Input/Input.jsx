@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({ label, ...rest }) {
+function Input({ label, className, ...rest }) {
   return (
     <div>
       <div>
@@ -10,7 +10,7 @@ function Input({ label, ...rest }) {
       </div>
       <div>
         <input
-          className="p-1 rounded border-black border"
+          className={"p-1 rounded border-black border " + className}
           required
           id={label}
           placeholder={label}
