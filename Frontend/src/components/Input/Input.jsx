@@ -4,10 +4,13 @@ function Input({ label, ...rest }) {
   return (
     <div>
       <div>
-        <label htmlFor={label}>{label}</label>
+        <label className="p-1" htmlFor={label}>
+          {label}
+        </label>
       </div>
       <div>
         <input
+          className="p-1 rounded border-black border"
           required
           id={label}
           placeholder={label}
