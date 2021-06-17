@@ -6,6 +6,7 @@ import SelectCountries from "../components/SelectCountries";
 import axios from "axios";
 import BackButton from "../components/BackButton";
 import Button from "../components/Button";
+import Menu from "../components/Menu";
 
 function HospitalRegistration() {
   const [name, setName] = useState("");
@@ -39,6 +40,7 @@ function HospitalRegistration() {
 
   return (
     <div>
+      <Menu />
       HospitalRegistration
       <FormSection label="Hospital">
         <Input
