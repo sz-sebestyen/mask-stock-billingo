@@ -7,11 +7,11 @@ function Menu() {
   const [show, setShow] = useState(false);
 
   return (
-    <div
-      className="fixed top-0 right-0"
-      onClick={() => setShow((prev) => !prev)}
-    >
-      <div className="ml-auto mt-2 mr-2 w-12 h-10 rounded-full p-2 flex flex-col justify-between">
+    <div className="fixed top-0 right-0">
+      <div
+        onClick={() => setShow((prev) => !prev)}
+        className="ml-auto mt-2 mr-2 w-12 h-10 rounded-full p-2 flex flex-col justify-between"
+      >
         <Line />
         <Line />
         <Line />
