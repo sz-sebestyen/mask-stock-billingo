@@ -1,11 +1,12 @@
 import React from "react";
 import Masks from "../Input/Masks";
+import Button from "../Button";
 
 function MaskOrderForm() {
   return (
     <div>
       <Masks />
-      <button>Order masks</button>
+      <Button>Order masks</Button>
     </div>
   );
 }

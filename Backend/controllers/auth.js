@@ -10,12 +10,13 @@ router.post("/login", (req, res, next) => {
     if (err) throw err;
     if (!user) res.send("User does not exist.");
     else {
-      req.logIn(user, (err) => {
+      req.logIn(user, async (err) => {
         if (err) throw err;
-        res.json({
-          /* message: "Successfully authenticated.", */ user: req.user,
-        });
-        console.log('auth user', req.user);
+        const foundUser = await User.findOne({ username: req.user.username })
+          .populate("hospitals")
+          .exec();
+        res.json({ user: foundUser });
+        console.log("auth user", req.user);
       });
     }
   })(req, res, next);
@@ -39,12 +40,15 @@ router.post("/register", (req, res) => {
   });
 });
 
-router.get("/user", (req, res) => {
+router.get("/user", async (req, res) => {
   if (req.isUnauthenticated()) {
     res.status(401);
     res.json({ message: "Unauthorized" });
   } else {
-    res.send({ message: "User is authenticated", user: req.user });
+    const foundUser = await User.findOne({ username: req.user.username })
+      .populate("hospitals")
+      .exec();
+    res.json({ message: "User is authenticated", user: foundUser });
   }
 });
 

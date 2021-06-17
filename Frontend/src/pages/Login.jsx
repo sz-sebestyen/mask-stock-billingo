@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import Email from "../components/Input/Email";
 import Password from "../components/Input/Password";
 import axios from "axios";
+import Button from "../components/Button";
 
 function Login() {
   let history = useHistory();
@@ -37,7 +38,7 @@ function Login() {
       Login
       <Email onChange={({ target: { value } }) => setLoginUsername(value)} />
       <Password onChange={({ target: { value } }) => setLoginPassword(value)} />
-      <button onClick={login}>login</button>
+      <Button onClick={login}>login</Button>
     </div>
   );
 }
