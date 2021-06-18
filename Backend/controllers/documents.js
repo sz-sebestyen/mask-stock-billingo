@@ -50,7 +50,6 @@ async function dataCollector(/* hosptialID, */ numberOfOrder) {
   }
 }
 
-//TODO:
 router.post("/documents", async (req, res) => {
   console.log("TAX_TYPE: ", req.body.partner_tax_type);
   const invoice = {
@@ -107,7 +106,7 @@ router.post("/documents", async (req, res) => {
     hostname: `api.billingo.hu`,
     path: `/v3/documents/${jsonResponse.id}/download`,
     headers: {
-      "X-API-KEY": "2fe9f974-cd27-11eb-a32a-06ac9760f844",
+      'X-API-KEY': apiKey,
     },
   };
 
