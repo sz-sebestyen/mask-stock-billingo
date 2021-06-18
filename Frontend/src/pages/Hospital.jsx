@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import HospitalDataCard from "../components/HospitalDataCard";
 import MaskOrderForm from "../components/MaskOrderForm";
 import BackButton from "../components/BackButton";
-// import MaskStock from "../components/MaskStock";
 import Menu from "../components/Menu";
 import { UserContext } from "../context";
 
@@ -34,7 +33,6 @@ function Hospital() {
       <h2 className="m-3 text-xl">Order masks for your hospital</h2>
       <HospitalDataCard hospital={hospital} />
       <MaskOrderForm hospital={hospital} stockUpdate={stockUpdate} />
-      {/* <MaskStock /> */}
       <div>
         (current stock:{" "}
         {masks !== null
