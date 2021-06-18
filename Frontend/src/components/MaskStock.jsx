@@ -7,13 +7,16 @@ export default function MaskStock() {
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setMasks(data));
+      .then((data) => {
+        setMasks(data);
+        console.log(data);
+      });
   }, []);
 
   return (
     <div>
       (current stock:{" "}
-      {masks
+      {masks !== null
         ? new Intl.NumberFormat("hu-HU").format(masks) + " pieces"
         : "loading..."}
       )
