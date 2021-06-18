@@ -5,7 +5,7 @@ const Partners = require("../models/hospital");
 const Users = require("../models/user");
 
 const apiKey = process.env.API_KEY;
-const Order = ('../models/orders.js')
+const Order = require('../models/orders.js')
 
 const options = {
   headers: {
