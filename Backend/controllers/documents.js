@@ -18,12 +18,38 @@ const timestamp = () => {
   const today = new Date();
   return [
     today.getFullYear(),
-    today.getMonth() + 1 < 10 ? "0" + (today.getMonth() + 1) : today.getMonth() + 1,
-    today.getDate() < 10 ? "0" + today.getDate() : today.getDate()
+    today.getMonth() + 1 < 10
+      ? "0" + (today.getMonth() + 1)
+      : today.getMonth() + 1,
+    today.getDate() < 10 ? "0" + today.getDate() : today.getDate(),
   ].join("-");
 };
 
-//TODO:
+const maskNumberChange = require("../maskNumberChange");
+const MyDatas = require("../models/myDatas");
+// adatkérés rendeléskor
+async function dataCollector(/* hosptialID, */ numberOfOrder) {
+  const ask = await MyDatas.find({ selfID: "selfData" });
+
+  if (ask[0].number_of_masks >= numberOfOrder) {
+    const newStock = await maskNumberChange(0 - numberOfOrder);
+    console.log("newStock: ", newStock);
+
+    //const taxType = await Hospital.findOne({ id: hosptialID });
+
+    // const datas = {
+    //   taxType: taxType.tax_type,
+    //   selfID: ask[0].selfID,
+    //   hospitalID: hosptialID,
+    //   numberOfOrder: numberOfOrder,
+    // };
+
+    return true;
+  } else {
+    return null;
+  }
+}
+
 router.post("/documents", async (req, res) => {
   console.log("TAX_TYPE: ", req.body.partner_tax_type);
   const invoice = {
@@ -72,34 +98,37 @@ router.post("/documents", async (req, res) => {
   });
   const jsonResponse = await response.json();
 
-  const https = require('https');
+  dataCollector(req.body.quantity);
+
+  const https = require("https");
 
   const downloadOptions = {
     hostname: `api.billingo.hu`,
     path: `/v3/documents/${jsonResponse.id}/download`,
     headers: {
-      'X-API-KEY': "2fe9f974-cd27-11eb-a32a-06ac9760f844"
-    }
+      'X-API-KEY': apiKey,
+    },
   };
 
-  const fs = require('fs');
-  const file = fs.createWriteStream(`./download/${jsonResponse.invoice_number}.pdf`);
+  const fs = require("fs");
+  const file = fs.createWriteStream(
+    `./download/${jsonResponse.invoice_number}.pdf`
+  );
 
   setTimeout(() => {
     console.log("download started");
     https.get(downloadOptions, (res) => {
-      res.pipe(file)
+      res.pipe(file);
     });
-  }, 10 * 1000);
+  }, 3 * 1000);
 
   res.send(jsonResponse);
   console.log("res: ", jsonResponse);
 });
 
-router.get('/documents/download/:id', function (req, res) {
+router.get("/documents/download/:id", function (req, res) {
   const file = `${__dirname}/../download/${req.params.id}.pdf`;
   res.download(file);
 });
-
 
 module.exports = router;

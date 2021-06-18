@@ -109,14 +109,7 @@ app.get("/maskNumber", async (req, res) => {
   res.json(resp)
 }) */
 
-async function maskNumberChange(changeNumber) {
-  console.log(" In maskNumberChange");
-  const response = await MyDatas.updateOne(
-    { selfID: "selfData" },
-    { $inc: { number_of_masks: changeNumber } }
-  );
-  return response;
-}
+const maskNumberChange = require("./maskNumberChange");
 
 async function ifMonthChange() {
   let date = new Date();
@@ -139,30 +132,6 @@ async function checkDate() {
 }
 
 checkDate(); // ezt rakjuk be a bejelentkezéshez, akkor minden log -in nél leeeleenőrzi a készletet.
-
-// adatkérés rendeléskor
-async function dataCollector(hosptialID, numberOfOrder) {
-  const ask = await MyDatas.find({ selfID: "selfData" });
-
-  if (ask[0].number_of_masks >= numberOfOrder) {
-    maskNumberChange(0 - numberOfOrder);
-
-    const taxType = await Hospital.findOne({ id: hosptialID });
-
-    const datas = {
-      taxType: taxType.tax_type,
-      selfID: ask[0].selfID,
-      hospitalID: hosptialID,
-      numberOfOrder: numberOfOrder,
-    };
-
-    return datas;
-  } else {
-    return "not enough Mask";
-  }
-}
-
-dataCollector(1736071317, 1000);
 
 /* 
 
