@@ -5,8 +5,10 @@ import Button from "../Button";
 
 function MaskOrderForm({ hospital, stockUpdate }) {
   const [invoiceId, setInvoiceId] = useState(null);
+  const [wait, setWait] = useState(false);
 
   const postOrder = () => {
+    setWait(true);
     axios({
       method: "POST",
       data: {
@@ -19,19 +21,22 @@ function MaskOrderForm({ hospital, stockUpdate }) {
       url: "http://localhost:3001/api/documents",
     }).then((res) => {
       console.log(res);
-      setInvoiceId(res.data.invoice_number);
       setTimeout(() => {
+        setWait(false);
+        setInvoiceId(res.data.invoice_number);
         stockUpdate();
-      }, 2000);
+      }, 3000);
     });
 
     //+ feedback
   };
 
   return (
-    <div className="flex flex-col gap-2 p-2">
+    <div className="flex flex-col gap-2 p-2 items-center">
       <Masks />
       <Button onClick={() => postOrder()}>Order masks</Button>
+
+      {wait && "waiting for download link"}
 
       {invoiceId && (
         <a href={`http://localhost:3001/api/documents/download/${invoiceId}`}>

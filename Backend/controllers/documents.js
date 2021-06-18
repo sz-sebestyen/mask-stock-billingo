@@ -121,7 +121,7 @@ router.post("/documents", async (req, res) => {
     https.get(downloadOptions, (res) => {
       res.pipe(file);
     });
-  }, 10 * 1000);
+  }, 3 * 1000);
 
   res.send(jsonResponse);
   console.log("res: ", jsonResponse);
