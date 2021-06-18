@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import HospitalDataCard from "../components/HospitalDataCard";
 import MaskOrderForm from "../components/MaskOrderForm";
 import BackButton from "../components/BackButton";
-import MaskStock from "../components/MaskStock";
+// import MaskStock from "../components/MaskStock";
 import Menu from "../components/Menu";
 import { UserContext } from "../context";
 

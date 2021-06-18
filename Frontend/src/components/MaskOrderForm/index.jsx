@@ -20,7 +20,9 @@ function MaskOrderForm({ hospital, stockUpdate }) {
     }).then((res) => {
       console.log(res);
       setInvoiceId(res.data.invoice_number);
-      stockUpdate();
+      setTimeout(() => {
+        stockUpdate();
+      }, 2000);
     });
 
     //+ feedback
