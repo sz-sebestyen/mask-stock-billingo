@@ -58,7 +58,7 @@ router.post("/documents", async (req, res) => {
     // paid: true,
     // items: [
     //   {
-    //     product_id: 7556148,//FE hospital tax type
+    //     p{ type: Number, required: true }roduct_id: 7556148,//FE hospital tax type
     //     quantity: 1,        //FE
     //   },
     // ],
