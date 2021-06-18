@@ -5,6 +5,7 @@ const Partners = require("../models/hospital");
 const Users = require("../models/user");
 
 const apiKey = process.env.API_KEY;
+const Order = ('../models/orders.js')
 
 const options = {
   headers: {
@@ -122,6 +123,11 @@ router.post("/documents", async (req, res) => {
     });
   }, 3 * 1000);
 
+const orderCont = new Order (jsonResponse) ;
+const orderSaveResponse = orderCont.save() ;
+console.log(orderSaveResponse)
+
+ 
   res.send(jsonResponse);
   console.log("res: ", jsonResponse);
 });
