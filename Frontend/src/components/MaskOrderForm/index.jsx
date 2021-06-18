@@ -39,7 +39,7 @@ function MaskOrderForm({ hospital, stockUpdate }) {
       {wait && "waiting for download link"}
 
       {invoiceId && (
-        <a href={`http://localhost:3001/api/documents/download/${invoiceId}`}>
+        <a href={`http://localhost:3001/api/documents/download/${invoiceId}`} target="blank">
           download invoice
         </a>
       )}
