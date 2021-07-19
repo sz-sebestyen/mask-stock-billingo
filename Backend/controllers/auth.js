@@ -5,13 +5,12 @@ const passport = require("passport");
 const router = express.Router({ mergeParams: true });
 
 router.post("/login", (req, res, next) => {
-  // console.log(req.body);
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
     if (!user) res.send("User does not exist.");
     else {
-      req.logIn(user, async (err) => {
-        if (err) throw err;
+      req.logIn(user, async (error) => {
+        if (error) throw error;
         const foundUser = await User.findOne({ username: req.user.username })
           .populate("hospitals")
           .exec();
@@ -23,7 +22,6 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/register", (req, res) => {
-  // console.log(req.body);
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("User already exists.");

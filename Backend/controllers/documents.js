@@ -1,11 +1,11 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const router = express.Router({ mergeParams: true });
-const Partners = require("../models/hospital");
-const Users = require("../models/user");
+const Order = require("../models/orders.js");
+const maskNumberChange = require("../maskNumberChange");
+const MyDatas = require("../models/myDatas");
 
 const apiKey = process.env.API_KEY;
-const Order = require('../models/orders.js')
 
 const options = {
   headers: {
@@ -26,24 +26,13 @@ const timestamp = () => {
   ].join("-");
 };
 
-const maskNumberChange = require("../maskNumberChange");
-const MyDatas = require("../models/myDatas");
-// adatkérés rendeléskor
-async function dataCollector(/* hosptialID, */ numberOfOrder) {
+// check data before orders
+async function dataCollector(numberOfOrder) {
   const ask = await MyDatas.find({ selfID: "selfData" });
 
   if (ask[0].number_of_masks >= numberOfOrder) {
     const newStock = await maskNumberChange(0 - numberOfOrder);
     console.log("newStock: ", newStock);
-
-    //const taxType = await Hospital.findOne({ id: hosptialID });
-
-    // const datas = {
-    //   taxType: taxType.tax_type,
-    //   selfID: ask[0].selfID,
-    //   hospitalID: hosptialID,
-    //   numberOfOrder: numberOfOrder,
-    // };
 
     return true;
   } else {
@@ -72,23 +61,7 @@ router.post("/documents", async (req, res) => {
         quantity: req.body.quantity,
       },
     ],
-    // partner_id: 1736092350, //FE
-    // block_id: 108926,       //FE hospital tax type
-    // bank_account_id: 94702, //FE hospital tax type
-    // type: "invoice",
-    // fulfillment_date: "2020-05-07", //timestamp
-    // due_date: "2020-05-07",         //timestamp
-    // payment_method: "bankcard",
-    // language: "hu",         //FE hospital tax type
-    // currency: "HUF",        //FE hospital tax type
-    // electronic: true,
-    // paid: true,
-    // items: [
-    //   {
-    //     p{ type: Number, required: true }roduct_id: 7556148,//FE hospital tax type
-    //     quantity: 1,        //FE
-    //   },
-    // ],
+
     comment: "",
   };
 
@@ -107,7 +80,7 @@ router.post("/documents", async (req, res) => {
     hostname: `api.billingo.hu`,
     path: `/v3/documents/${jsonResponse.id}/download`,
     headers: {
-      'X-API-KEY': apiKey,
+      "X-API-KEY": apiKey,
     },
   };
 
@@ -118,16 +91,15 @@ router.post("/documents", async (req, res) => {
 
   setTimeout(() => {
     console.log("download started");
-    https.get(downloadOptions, (res) => {
-      res.pipe(file);
+    https.get(downloadOptions, (httpsRes) => {
+      httpsRes.pipe(file);
     });
   }, 3 * 1000);
 
-const orderCont = new Order (jsonResponse) ;
-const orderSaveResponse = orderCont.save() ;
-console.log(orderSaveResponse)
+  const orderCont = new Order(jsonResponse);
+  const orderSaveResponse = orderCont.save();
+  console.log(orderSaveResponse);
 
- 
   res.send(jsonResponse);
   console.log("res: ", jsonResponse);
 });
