@@ -4,9 +4,15 @@ Team project within Codecools api developer course. User can register, login the
 
 ## Installing
 
-After cloning the repository, intall the dependencies.
+After cloning the repository, intall the dependencies of the backend and the frontend.
 
 ```shell
+cd Backend
+npm install
+```
+
+```shell
+cd Frontend
 npm install
 ```
 
