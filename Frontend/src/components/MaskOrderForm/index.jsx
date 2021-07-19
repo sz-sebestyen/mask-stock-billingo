@@ -14,10 +14,9 @@ function MaskOrderForm({ hospital, stockUpdate }) {
       data: {
         partner_id: hospital.id,
         partner_tax_type:
-          hospital.tax_type === "HAS_TAX_NUMBER" ? "huf" : "eur", //vagy "eur" - tax_type: "HAS_TAX_NUMBER" ?
+          hospital.tax_type === "HAS_TAX_NUMBER" ? "huf" : "eur",
         quantity: document.getElementById("orderQt").value,
       },
-      // withCredentials: true,
       url: "http://localhost:3001/api/documents",
     }).then((res) => {
       console.log(res);
@@ -27,8 +26,6 @@ function MaskOrderForm({ hospital, stockUpdate }) {
         stockUpdate();
       }, 3000);
     });
-
-    //+ feedback
   };
 
   return (
@@ -39,7 +36,10 @@ function MaskOrderForm({ hospital, stockUpdate }) {
       {wait && "waiting for download link"}
 
       {invoiceId && (
-        <a href={`http://localhost:3001/api/documents/download/${invoiceId}`} target="blank">
+        <a
+          href={`http://localhost:3001/api/documents/download/${invoiceId}`}
+          target="blank"
+        >
           download invoice
         </a>
       )}

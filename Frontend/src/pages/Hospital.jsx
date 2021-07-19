@@ -9,7 +9,9 @@ import { UserContext } from "../context";
 function Hospital() {
   const { id } = useParams();
   const [user] = useContext(UserContext);
-  const hospital = user?.hospitals?.find((hospital) => "" + hospital.id === id);
+  const hospital = user?.hospitals?.find(
+    ({ id: hospitalId }) => "" + hospitalId === id
+  );
 
   const [masks, setMasks] = useState(null);
   const url = "http://localhost:3001/maskNumber";
